@@ -22,10 +22,12 @@ def main():
             suppliers = row['TotalActiveSuppliers']
             print(f'År: {year} - sum af Total Active Suppliers: {suppliers}')
 
+        # Gemmer data
         data_handler.load_data(transformed_data)
 
         print("Data gemt i csv")
 
+        # Printer graf
         data_handler.print_graph(transformed_data)
 
         print('Graf printet')

@@ -6,13 +6,13 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import sum, year
 import plotly.graph_objects as go
 
-# Opret en variabel til PySpark-session. Behøver kun at kalde en gang.
+# Opret en variabel til PySpark-session.
 spark = None
 
 def start_spark_session():
     global spark
 
-    # Opret en PySpark-session. Behøver kun at kalde en gang.
+    # Igangsætter spark.
     spark = SparkSession.builder.getOrCreate()
 
 def extract_data():
@@ -46,12 +46,14 @@ def transform_data(data):
 def load_data(data):
     data_dir = 'data'
 
+    #Tjekker om folderen eksisterer.
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
 
     # Find eksisterende filer der indeholder ActiveSupplierPerGridArea
     existing_files = [f for f in os.listdir(data_dir) if f.startswith('ActiveSupplierPerGridArea')]
 
+    # Henter nummer til fil
     file_number = check_file(existing_files)
 
     # Opret filnavnet med det genererede nummer
@@ -66,12 +68,14 @@ def load_data(data):
 def print_graph(data):
     img_dir = 'img'
 
+    #Tjekker om folderen eksisterer.
     if not os.path.exists(img_dir):
         os.makedirs(img_dir)
 
+    # Pakker data ud og indsætter i variablerne.
     year, suppliers = zip(*[(row['Year'], row['TotalActiveSuppliers']) for row in data])
 
-    # Find det mindste og største år i dine data
+    # Find det mindste og største år fra data'en
     start_year = min(year)
     end_year = max(year)
     
@@ -94,6 +98,7 @@ def print_graph(data):
     # Find eksisterende filer der indeholder ActiveSupplierPerGridArea
     existing_files = [f for f in os.listdir(img_dir) if f.startswith('fig')]
 
+    # Henter nummer til fil
     file_number = check_file(existing_files)
 
     # Gem
