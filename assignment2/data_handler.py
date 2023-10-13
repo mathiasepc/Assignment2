@@ -1,7 +1,6 @@
 import os
 import requests
 import pandas as pd
-import pyspark.pandas as ps
 from pyspark.sql import SparkSession
 #Importere indbygget funktioner.
 from pyspark.sql.functions import sum, year
