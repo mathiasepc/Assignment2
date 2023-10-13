@@ -75,9 +75,10 @@ def print_graph(data):
     start_year = min(year)
     end_year = max(year)
     
-    # Opret en Pandas Series med indeks baseret på år (fra start_year til end_year) skal have + 1 ellers crash
+    #laver intervallet af mit index til graf. Skal have + 1 ellers crash
     years = list(range(start_year, end_year + 1))
 
+    # Opret en Pandas Series med indeks baseret på år (fra start_year til end_year) 
     pser = pd.Series(suppliers, index=years)
 
     # Opret et Plotly-linjediagram
