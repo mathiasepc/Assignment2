@@ -80,10 +80,8 @@ def print_graph(data):
 
     pser = pd.Series(suppliers, index=years)
 
-    psser = pser.cummax()
-
     # Opret et Plotly-linjediagram
-    fig = go.Figure(data=go.Scatter(x=years, y=psser.values, mode='lines'))
+    fig = go.Figure(data=go.Scatter(x=years, y=pser.values, mode='lines'))
 
     # Tilføj aksetitler
     fig.update_layout(
@@ -111,7 +109,7 @@ def check_file(existing_files):
         #finder tallet og plusser med 1. Hver fil får nyt navn
         return file_number
     else:
-        file_number == 1
+        file_number = 1
         return file_number 
     
 def find_digit(string):
